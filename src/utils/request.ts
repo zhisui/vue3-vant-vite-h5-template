@@ -13,9 +13,9 @@ import { Dialog, Toast } from 'vant'
 import router from '@/router'
 // 根据环境不同引入不同api地址
 // import config from '@/config'
-
+const baseURL = import.meta.env.VITE_BASE_URL
 const instance: AxiosInstance = axios.create({
-    baseURL: './',
+    baseURL,
     timeout: 5000,
     withCredentials: false // send cookies when cross-domain requests
     // headers: {
