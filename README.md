@@ -1,46 +1,45 @@
-# vue3-vant-h5
+# vue3-vant4-h5
 
-This template should help get you started developing with Vue 3 in Vite.
+此模板用于手机h5开发
+## 初始化项目
+基于[create-vue](https://github.com/vuejs/create-vue)初始化项目，可根据提示选择安装依赖，此模板已配置好vue-router、pinia、eslint、prettier。
 
-## Recommended IDE Setup
+ ## 安装UI库
+手机端ui库使用 [vant4](https://vant-contrib.gitee.io/vant/#/zh-CN/quickstart)，引入方式采用按需引入
+### 安装
+```bash
+# 默认安装v4版本
+npm i vant
+```
+### 安装插件
+```bash
+# 通过 npm 安装
+npm i unplugin-vue-components -D
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+# 通过 yarn 安装
+yarn add unplugin-vue-components -D
 
-## Type Support for `.vue` Imports in TS
+# 通过 pnpm 安装
+pnpm add unplugin-vue-components -D
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 配置vite.config.ts
 
-```sh
-npm run dev
+```js
+import vue from '@vitejs/plugin-vue';
+import Components from 'unplugin-vue-components/vite';
+import { VantResolver } from 'unplugin-vue-components/resolvers';
+export default {
+  plugins: [
+    vue(),
+    Components({
+      resolvers: [VantResolver()],
+    }),
+  ],
+};
 ```
 
-### Type-Check, Compile and Minify for Production
 
-```sh
-npm run build
-```
 
-### Lint with [ESLint](https://eslint.org/)
 
-```sh
-npm run lint
-```

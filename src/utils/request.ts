@@ -9,10 +9,11 @@ import type {
     AxiosResponse,
     AxiosRequestConfig
 } from 'axios'
-import { Dialog, Toast } from 'vant'
+
 import router from '@/router'
 // 根据环境不同引入不同api地址
 // import config from '@/config'
+import { closeToast, showLoadingToast, showToast } from 'vant'
 const baseURL = import.meta.env.VITE_BASE_URL
 const instance: AxiosInstance = axios.create({
     baseURL,
@@ -29,7 +30,7 @@ const instance: AxiosInstance = axios.create({
 instance.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
         // 加载动画
-        Toast.loading({
+        showLoadingToast({
             message: '加载中...',
             forbidClick: true
         })
@@ -48,7 +49,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
     async (response: AxiosResponse) => {
         // await new Promise(resovle => setTimeout(resovle, 3000))
-        Toast.clear()
+        closeToast()
         const res = response.data
         if (res.code !== 0) {
             // token 过期
@@ -57,10 +58,7 @@ instance.interceptors.response.use(
                 return
             }
             if (res.code == 403) {
-                Dialog.alert({
-                    title: '警告',
-                    message: res.msg
-                }).then(() => {})
+                showToast(res.msg)
                 return
             }
             // 若后台返回错误值，此处返回对应错误对象，下面 error 就会接收
@@ -71,7 +69,7 @@ instance.interceptors.response.use(
         }
     },
     (error: any) => {
-        Toast.clear()
+        closeToast()
         if (error && error.response) {
             switch (error.response.status) {
                 case 400:
@@ -119,7 +117,7 @@ instance.interceptors.response.use(
             }
             error.message = '连接到服务器失败，请联系管理员'
         }
-        Toast(error.message)
+        showToast(error.message)
         // store.auth.clearAuth()
         // store.dispatch('clearAuth')
         return Promise.reject(error)
