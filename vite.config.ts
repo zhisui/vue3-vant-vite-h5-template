@@ -17,6 +17,7 @@ export default defineConfig({
     ],
     server: {
         host: '0.0.0.0',
+        open: true,
         proxy: {
             '/api': {
                 target: 'http://jsonplaceholder.typicode.com',
