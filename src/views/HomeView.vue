@@ -1,14 +1,13 @@
-
 <template>
-  <main>
-    <TheWelcome />
-    <div class="lang">test</div>
-  </main>
+    <main>
+        <TheWelcome />
+        <div class="lang">test</div>
+    </main>
 </template>
 
 <script setup lang="ts">
-import { homeApi } from '@/api';
-import { onMounted } from 'vue';
+import { homeApi } from '@/api'
+import { onMounted } from 'vue'
 import TheWelcome from '../components/TheWelcome.vue'
 onMounted(() => {
     console.log('执行没有')
@@ -23,7 +22,6 @@ const getTreatmentStatus = async () => {
 </script>
 
 <style scoped lang="scss">
- .lang {
-
- }
+.lang {
+}
 </style>

@@ -6,11 +6,12 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 // import styleImport, { VantResolve } from 'vite-plugin-style-import'
 import Components from 'unplugin-vue-components/vite'
 import { VantResolver } from 'unplugin-vue-components/resolvers'
-// https://vitejs.dev/config/
+import { visualizer } from 'rollup-plugin-visualizer';
 export default defineConfig({
     plugins: [
         vue(),
         vueJsx(),
+        visualizer(),
         Components({
             resolvers: [VantResolver()]
         })

@@ -3,6 +3,7 @@
 <template>
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <p >{{ time }}</p>
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
       <van-button type="primary">主要按钮</van-button>
@@ -18,6 +19,9 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from '@/components/HelloWorld.vue'
+import { ref } from 'vue';
+
+const time = ref<string | Date>('')
 </script>
 
 <style scoped lang="scss">
@@ -25,6 +29,7 @@ header {
   line-height: 1.5;
   max-height: 100vh;
 }
+
 
 .logo {
   display: block;

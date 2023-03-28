@@ -5,15 +5,14 @@
     "trailingComma": "es5",
     "tabWidth": 4,
     "printWidth": 150,
+    "htmlWhitespaceSensitivity": "ignore",
     "proseWrap": "preserve",
     "overrides": [
-      {
-          "files": [
-              "*.vue"
-          ],
-          "options": {
-              "parser": "vue"
-          }
-      }
-  ]
+        {
+            "files": ["*.vue"],
+            "options": {
+                "parser": "vue"
+            }
+        }
+    ]
 }
